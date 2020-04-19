@@ -1,10 +1,10 @@
 package arrays
 
-// Sum returns the sum of the elements within an array.
-func Sum(numbers [5]int) int {
+// Sum returns the sum of the elements within a slice.
+func Sum(numbers []int) int {
 	sum := 0
-	for i := 0; i < 5; i++ {
-		sum += numbers[i]
+	for _, number := range numbers {
+		sum += number
 	}
 	return sum
 }
