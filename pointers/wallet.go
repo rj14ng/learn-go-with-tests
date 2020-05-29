@@ -1,6 +1,9 @@
 package pointers
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // A Bitcoin represents the number of Bitcoins.
 type Bitcoin int
@@ -18,6 +21,17 @@ type Wallet struct {
 // Deposit adds a number of Bitcoin to a Wallet.
 func (w *Wallet) Deposit(amount Bitcoin) {
 	w.balance += amount
+}
+
+// Withdraw removes a number of Bitcoin from a Wallet.
+func (w *Wallet) Withdraw(amount Bitcoin) error {
+	// Insufficient funds
+	if amount > w.balance {
+		return errors.New("oh no")
+	}
+
+	w.balance -= amount
+	return nil
 }
 
 // Balance returns the number of Bitcoin within a Wallet.
